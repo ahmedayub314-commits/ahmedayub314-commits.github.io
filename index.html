@@ -1,0 +1,1399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="QA engineer and test automation developer based in Minneapolis, MN.">
+<style>:root{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Ahmed Ayub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: one reading spine, left-aligned, with a mono data rail for metadata.
+   Semantic status colors are kept separate from the accent. */
+:root {
+  --bg:        #f6f7fa;
+  --surface:   #ffffff;
+  --fg:        #10151c;
+  --fg-dim:    #58626f;
+  --fg-faint:  #8a93a1;
+  --line:      #dde2ea;
+  --accent:    #1d58c7;
+  --ok:        #156e4a;
+  --warn:      #8a5a00;
+  --risk:      #a2301d;
+  --font-display: Archivo, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #0c1014;
+    --surface:   #13191f;
+    --fg:        #e7ebf1;
+    --fg-dim:    #9aa4b2;
+    --fg-faint:  #6b7585;
+    --line:      #212b36;
+    --accent:    #6ea3ff;
+    --ok:        #42b584;
+    --warn:      #d79a2b;
+    --risk:      #f0705a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:        #0c1014;
+  --surface:   #13191f;
+  --fg:        #e7ebf1;
+  --fg-dim:    #9aa4b2;
+  --fg-faint:  #6b7585;
+  --line:      #212b36;
+  --accent:    #6ea3ff;
+  --ok:        #42b584;
+  --warn:      #d79a2b;
+  --risk:      #f0705a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 5rem;
+}
+
+/* ---- masthead ---- */
+.mast { padding-block: 3.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 7vw, 3.1rem);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.04;
+  margin: 0 0 0.5rem;
+  text-wrap: balance;
+}
+.role {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.75rem;
+}
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.83rem;
+  color: var(--fg-dim);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.contact li { min-width: 0; overflow-wrap: anywhere; }
+.contact a { color: var(--fg-dim); text-decoration: none; border-bottom: 1px solid var(--line); }
+.contact a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+.intro { margin-block: 2.25rem 0; }
+.intro p { max-width: 36em; margin: 0 0 1rem; }
+.intro p:first-child { font-size: 1.14rem; color: var(--fg); }
+.intro p:last-child { color: var(--fg-dim); }
+
+/* ---- sections ---- */
+section { padding-block: 3rem 0; }
+h2 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  margin: 0 0 1.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.entry { padding-block: 0 2.5rem; }
+.entry:last-child { padding-bottom: 0; }
+.entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.15rem 1rem;
+}
+h3 {
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  margin: 0;
+  text-wrap: balance;
+  min-width: 0;
+}
+.when {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--fg-faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.where {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin: 0.3rem 0 0;
+}
+.note { color: var(--fg-dim); margin: 0.7rem 0 0; max-width: 40em; }
+.stack {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--fg-faint);
+  margin: 0.55rem 0 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+ul.points { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+ul.points li { position: relative; padding-left: 1.1rem; max-width: 40em; color: var(--fg-dim); }
+ul.points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--line);
+  border: 1px solid var(--fg-faint);
+}
+
+/* ---- skills ---- */
+.skills { display: flex; flex-direction: column; gap: 1.1rem; }
+.skillrow { display: grid; grid-template-columns: 11rem 1fr; gap: 0.3rem 1.25rem; }
+@media (max-width: 34rem) { .skillrow { grid-template-columns: 1fr; } }
+.skillrow dt {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  padding-top: 0.22em;
+}
+.skillrow dd { margin: 0; color: var(--fg-dim); min-width: 0; font-size: 0.95rem; }
+
+/* ---- method ---- */
+.method {
+  margin-top: 3rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--ok);
+  padding: 1.75rem;
+}
+.method h2 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  border: 0;
+  padding: 0;
+  margin: 0 0 0.9rem;
+}
+.method p { color: var(--fg-dim); margin: 0 0 0.85rem; max-width: 40em; font-size: 0.96rem; }
+.method p:last-child { margin-bottom: 0; }
+
+footer {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-faint);
+}
+a:focus-visible, .contact a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ---- working models ---- */
+.demo { margin-top: 1.5rem; border: 1px solid var(--line); background: var(--surface); max-width: 42em; }
+.tabs {
+  display: flex; flex-wrap: wrap; gap: 0;
+  border-bottom: 1px solid var(--line); background: var(--bg);
+}
+.tabs button {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.055em;
+  background: transparent; color: var(--fg-dim); border: 0;
+  border-bottom: 2px solid transparent; padding: 0.6rem 0.85rem; cursor: pointer;
+}
+.tabs button:hover { color: var(--fg); }
+.tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.panel { padding: 1.15rem 1.15rem 1.25rem; }
+.demo-cap {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--fg-faint); margin: 0 0 1rem; line-height: 1.5;
+}
+.demo-note { font-size: 0.85rem; color: var(--fg-faint); margin: 1rem 0 0; line-height: 1.6; }
+.demo button:not(.tabs button) {
+  font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.03em;
+  background: var(--accent); color: var(--surface); border: 0; padding: 0.48rem 0.85rem; cursor: pointer;
+}
+.demo button.ghost { background: transparent; color: var(--fg-dim); border: 1px solid var(--line); }
+.demo button.ghost:hover, .demo button.ghost[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.demo input[type="number"], .demo input[type="text"], .demo select {
+  font-family: var(--font-mono); font-size: 0.85rem; background: var(--bg); color: var(--fg);
+  border: 1px solid var(--line); padding: 0.4rem 0.5rem; width: 100%; min-width: 0;
+}
+.demo label { font-size: 0.82rem; color: var(--fg-dim); }
+.btnrow { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem; }
+.field { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.verdict {
+  font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.55;
+  padding: 0.6rem 0.75rem; border-left: 2px solid var(--line); background: var(--bg);
+  margin-top: 0.9rem; overflow-wrap: anywhere;
+}
+.verdict.pass { border-left-color: var(--ok); color: var(--ok); }
+.verdict.fail { border-left-color: var(--risk); color: var(--risk); }
+.verdict.hold { border-left-color: var(--warn); color: var(--warn); }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sliderow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.9rem; flex-wrap: wrap; }
+.sliderow input[type="range"] { flex: 1 1 9rem; min-width: 7rem; accent-color: var(--accent); }
+
+/* wallet */
+.walletgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.95rem; }
+@media (max-width: 30rem) { .walletgrid { grid-template-columns: 1fr; } }
+.bal { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 1.7rem; letter-spacing: -0.02em; color: var(--fg); margin: 0.15rem 0 0; }
+.bal-lbl { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-faint); margin: 0; }
+
+/* role cycling */
+.permgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: 0.4rem; margin-top: 0.95rem; }
+.perm { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.4rem 0.55rem; border: 1px solid var(--line); color: var(--fg-faint); }
+.perm.on { border-color: var(--ok); color: var(--ok); }
+.perm.off { opacity: 0.5; }
+
+/* socket coverage */
+.covergrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14px, 1fr)); gap: 3px; margin-top: 0.4rem; }
+.cell { aspect-ratio: 1; border-radius: 1px; background: var(--line); }
+.cell.fired { background: var(--ok); }
+.coverlegend { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.7rem; font-family: var(--font-mono); font-size: 0.68rem; color: var(--fg-faint); }
+.coverlegend i { display: inline-block; width: 9px; height: 9px; margin-right: 0.35rem; vertical-align: baseline; }
+.sw.fired { background: var(--ok); }
+.sw.silent { background: var(--line); }
+
+/* evv */
+.evv-toggles { display: flex; flex-direction: column; gap: 0.45rem; }
+.evv-toggles label { display: flex; align-items: flex-start; gap: 0.55rem; cursor: pointer; line-height: 1.45; }
+.evv-toggles input { margin-top: 0.22em; accent-color: var(--accent); }
+.flagbox { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; min-height: 1.5rem; }
+.flag { font-family: var(--font-mono); font-size: 0.69rem; letter-spacing: 0.03em; border: 1px solid var(--warn); color: var(--warn); padding: 0.18rem 0.45rem; }
+.flag.clean { border-color: var(--ok); color: var(--ok); }
+.reasonwrap { margin-top: 0.9rem; display: flex; flex-direction: column; gap: 0.35rem; }
+
+/* geofence */
+#geo-svg { width: 100%; max-width: 100%; height: auto; display: block; background: var(--bg); border: 1px solid var(--line); }
+
+/* overtime */
+.weekrows { display: flex; flex-direction: column; gap: 0.8rem; }
+.wk { display: grid; grid-template-columns: 5.5rem 1fr 8.5rem; gap: 0.7rem; align-items: center; }
+@media (max-width: 32rem) { .wk { grid-template-columns: 1fr; gap: 0.3rem; } }
+.wk label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-faint); }
+.wk input[type="range"] { accent-color: var(--accent); min-width: 0; }
+.wk .split { font-family: var(--font-mono); font-size: 0.74rem; font-variant-numeric: tabular-nums; color: var(--fg-dim); text-align: right; }
+.wk .split b { color: var(--warn); font-weight: 600; }
+@media (max-width: 32rem) { .wk .split { text-align: left; } }
+
+/* match ranking */
+.candlist { display: flex; flex-direction: column; gap: 0.5rem; }
+.cand { border: 1px solid var(--line); padding: 0.6rem 0.7rem; display: flex; flex-wrap: wrap; gap: 0.4rem 0.7rem; align-items: center; }
+.cand.win { border-color: var(--ok); }
+.cand .rank { font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-faint); width: 2.2rem; flex: none; }
+.cand.win .rank { color: var(--ok); }
+.cand .nm { font-family: var(--font-mono); font-size: 0.76rem; color: var(--fg); flex: 1 1 7rem; min-width: 0; }
+.cand .toggles { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.cand .toggles button { font-size: 0.66rem !important; padding: 0.2rem 0.4rem !important; }
+
+/* tables */
+.mtable { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+.mtable th { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--fg-faint); text-align: right; font-weight: 600; padding: 0 0 0.5rem 0.7rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.mtable th:first-child, .mtable td:first-child { text-align: left; padding-left: 0; }
+.mtable td { padding: 0.45rem 0 0.45rem 0.7rem; border-bottom: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); color: var(--fg-dim); white-space: nowrap; }
+.mtable td:first-child { font-family: var(--font-body); color: var(--fg); white-space: normal; }
+.mtable tr.loss td { color: var(--risk); }
+.mtable tr.ask td { color: var(--warn); }
+.tablescroll { overflow-x: auto; }
+
+/* source */
+.srcfile { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--accent); margin: 1.4rem 0 0.4rem; overflow-wrap: anywhere; }
+.srcfile:first-child { margin-top: 0; }
+pre.code { margin: 0; overflow-x: auto; background: var(--bg); border: 1px solid var(--line); padding: 0.8rem 0.9rem; }
+pre.code code { font-family: var(--font-mono); font-size: 0.73rem; line-height: 1.6; color: var(--fg-dim); white-space: pre; }
+.hljs-keyword, .hljs-built_in { color: var(--accent); }
+.hljs-string { color: var(--ok); }
+.hljs-comment { color: var(--fg-faint); font-style: italic; }
+.hljs-number, .hljs-literal { color: var(--warn); }
+.hljs-title, .hljs-title_, .hljs-function .hljs-title, .hljs-attr, .hljs-property { color: var(--fg); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <h1>Ahmed Ayub</h1>
+    <p class="role">QA engineer and test automation developer</p>
+    <ul class="contact">
+      <li>Minneapolis, MN</li>
+      <li><a href="mailto:ahmedayub314@gmail.com">ahmedayub314@gmail.com</a></li>
+      <li>763-898-8433</li>
+      <li><a href="https://www.linkedin.com/in/ahmed-ayub-qa">linkedin.com/in/ahmed-ayub-qa</a></li>
+    </ul>
+    <div class="intro">
+      <p>I test the systems where a wrong number has a consequence: wallets, payroll, claims, ledgers. The work is mostly proving which figure is authoritative and then proving the software agrees with it.</p>
+      <p>Four years of that across a real-money gaming platform, two Fortune 500 IT organizations, and four systems I built and tested myself. I write the automation, the test plans, and the reports, and I lead user acceptance testing with people who do not work in software.</p>
+    </div>
+  </header>
+  <section>
+    <h2>Things I built</h2>
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Castle QA Automation Framework</h3>
+      </div>
+      <p class="where">Designed and built the test infrastructure for a real-money gaming platform</p>
+      <p class="note">The platform had no automated coverage. This is what it is tested with now.</p>
+      <p class="stack">TypeScript, Playwright, Node/Express, Socket.IO, Claude Agent SDK</p>
+    <ul class="points">
+      <li>Split the suite into five areas that each run alone or as one full audit: site health, authentication, game smoke, realtime sockets, and wallet reconciliation.</li>
+      <li>Built an Express dashboard that runs any suite on demand, scores overall health, and writes a JSON report per run.</li>
+      <li>Built a chat interface on the Claude Agent SDK that turns a plain-English request into a live test run: custom tools, a streaming SSE response, and a generated report at the end. Senior engineers on the team now come to me for the AI integration work.</li>
+      <li>Solved the access problem that had blocked automation entirely: per-application Cloudflare Zero Trust service tokens, plus a browser session-capture path that clears the Turnstile bot check without a manual solve.</li>
+      <li>Wrote an admin API client that drives test setup programmatically, cycling one account through four permission roles instead of maintaining an account per role, recording and reverting every change.</li>
+      <li>Wrote the report generators that turn a run into the per-criterion pass/fail table with screenshot evidence that the product team actually receives.</li>
+      <li>Handled the two things that had been causing false defect reports: canvas-rendered game boards read from screenshots rather than the DOM, and animated balance counters polled until they settle before any value is read.</li>
+    </ul>
+
+
+      <div class="demo">
+        <div class="tabs" role="tablist" aria-label="Castle working models">
+          <button type="button" role="tab" aria-selected="true" data-panel="c1">Settle before you read</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="c2">Role cycling</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="c3">Socket coverage</button>
+        </div>
+
+        <div class="panel" id="c1">
+          <p class="demo-cap">Why the first wallet suite reported defects that were not there</p>
+          <div class="btnrow"><button id="bet-go" type="button">Place a $25 bet</button></div>
+          <div class="walletgrid">
+            <div><p class="bal-lbl">On-screen balance</p><p class="bal" id="bal-screen">$1,000.00</p></div>
+            <div><p class="bal-lbl">Ledger (authoritative)</p><p class="bal" id="bal-truth">$1,000.00</p></div>
+          </div>
+          <div class="verdict" id="v-naive">Assert immediately &rarr; waiting</div>
+          <div class="verdict" id="v-settled">Assert once the counter settles &rarr; waiting</div>
+          <p class="demo-note">The balance animates up to its new value. A test that reads the number the moment the bet
+            resolves catches it mid-count and files a payout defect. A longer fixed wait is flaky in a different way, so
+            the suite polls until the value has moved and then held, and asserts on that.</p>
+        </div>
+
+        <div class="panel" id="c2" hidden>
+          <p class="demo-cap">One account, four permission roles, every change reverted</p>
+          <div class="btnrow" id="role-btns">
+            <button type="button" class="ghost" data-role="player">Player</button>
+            <button type="button" class="ghost" data-role="vip">VIP</button>
+            <button type="button" class="ghost" data-role="staff">Staff</button>
+            <button type="button" class="ghost" data-role="admin">Admin</button>
+          </div>
+          <div class="permgrid" id="perm-grid"></div>
+          <div class="verdict" id="role-log">No role applied yet.</div>
+          <p class="demo-note">Maintaining one test account per role means four accounts drifting out of sync. The admin
+            API client instead promotes a single account, runs the checks for that role, and puts the original value
+            back, recording both halves so a failed run cannot leave the account elevated.</p>
+        </div>
+
+        <div class="panel" id="c3" hidden>
+          <p class="demo-cap">What the realtime layer actually emits, against what the docs claim</p>
+          <div class="covergrid" id="cover-grid"></div>
+          <div class="coverlegend">
+            <span><i class="sw fired"></i> fires as documented</span>
+            <span><i class="sw silent"></i> documented, never observed</span>
+          </div>
+          <div class="verdict pass" id="cover-stat"></div>
+          <p class="demo-note">Each cell is a documented socket event. Testing a realtime layer means subscribing to
+            every channel and recording what arrives, because an event that is specified but never emitted looks
+            identical to a feature that works until someone depends on it.</p>
+        </div>
+      </div>
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Harbor, HCBS Compliance &amp; EVV Platform</h3>
+      </div>
+      <p class="where">Built solo, Minnesota 245D / HCBS provider software</p>
+      <p class="note">My own product, built solo. Minnesota 245D and Home and Community-Based Services providers have to produce documentation on demand for a licensor, and the state requires electronic visit verification on every visit. Harbor does both. Built and demo-ready; no agency is running on it yet.</p>
+      <p class="stack">TypeScript, React, Node, SQLite</p>
+    <ul class="points">
+      <li>Built a compliance and documentation platform for Minnesota 245D and Home and Community-Based Services providers: 16 modules covering person-centered service plans, medication administration, scheduling, electronic visit verification, payroll, and billing readiness, with 261 automated server tests.</li>
+      <li>Implemented state EVV submission to the HHAeXchange aggregator against the published Minnesota specification, mapping 13 payers and 959 procedure codes, with reason, action, and exception codes applied per visit and a practice mode that reproduces the state's error codes locally for testing.</li>
+      <li>Tested the money paths the way a payer would audit them: payroll periods and overtime splits, service authorizations and units drawn from signed notes, visit times reconciled to the minute across time zones, and exception approvals that must be recorded before a visit can be transmitted.</li>
+      <li>Wrote the requirements from primary sources, reading the state specification and regulation directly rather than working from summaries, and built a 14-file licensor packet that produces the evidence an auditor asks for.</li>
+      <li>Designed the interface around two very different users, an agency owner on a desktop and a direct support professional clocking in on a phone, and verified every screen at 375 pixels as well as full width.</li>
+    </ul>
+
+
+      <div class="demo">
+        <div class="tabs" role="tablist" aria-label="Harbor working models">
+          <button type="button" role="tab" aria-selected="true" data-panel="h1">EVV exception</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="h2">Geofence</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="h3">Overtime split</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="h4">Source</button>
+        </div>
+
+        <div class="panel" id="h1">
+          <p class="demo-cap">A visit the state will not accept, and what it takes to clear it</p>
+          <div class="evv-toggles">
+            <label><input type="checkbox" id="evv-gps" checked> Phone captured a location at clock-in</label>
+            <label><input type="checkbox" id="evv-range" checked> Location is inside the geofence around the service address</label>
+            <label><input type="checkbox" id="evv-out" checked> Staff clocked out at the end of the visit</label>
+          </div>
+          <div class="flagbox" id="evv-flags"></div>
+          <div class="reasonwrap" id="evv-reasonwrap" hidden>
+            <label for="evv-code">Minnesota visit edit reason code</label>
+            <select id="evv-code"></select>
+          </div>
+          <div class="verdict" id="evv-status"></div>
+          <p class="demo-note">Minnesota routes electronic visit verification through the HHAeXchange aggregator. A visit
+            whose clock events an auditor could not verify has to carry a coded reason and a coded action before it can
+            be sent. The codes here are the real ones from the Minnesota spec, and the list narrows to the codes that fit
+            the flag raised, the way the platform does it.</p>
+        </div>
+
+        <div class="panel" id="h2" hidden>
+          <p class="demo-cap">Was the worker actually at the person's home when they clocked in?</p>
+          <svg id="geo-svg" viewBox="0 0 320 190" role="img" aria-labelledby="geo-alt"></svg>
+          <p id="geo-alt" class="sr-only">A map showing the geofence around the service address and the clock-in location.</p>
+          <div class="btnrow">
+            <button type="button" class="ghost" data-geo="44.9715,-93.2606">At the front door</button>
+            <button type="button" class="ghost" data-geo="44.9731,-93.2588">Down the block</button>
+            <button type="button" class="ghost" data-geo="45.0941,-93.3563">Day program, Brooklyn Park</button>
+          </div>
+          <div class="sliderow">
+            <label for="geo-radius">Geofence radius</label>
+            <input type="range" id="geo-radius" min="25" max="400" step="25" value="150">
+            <span class="num" id="geo-radius-val">150 m</span>
+          </div>
+          <div class="verdict" id="geo-verdict"></div>
+          <p class="demo-note">Distance is the haversine great-circle formula in the Source tab, run against the person's
+            service address. Outside the radius the visit raises an exception and needs code 204 or 207 before it can be
+            sent. The coordinates are the fictional ones from the platform's own demo data.</p>
+        </div>
+
+        <div class="panel" id="h3" hidden>
+          <p class="demo-cap">Overtime is weekly, not per pay period, and that distinction is someone's paycheck</p>
+          <div class="weekrows" id="ot-rows"></div>
+          <div class="verdict" id="ot-total"></div>
+          <p class="demo-note">A two-week pay period totalling 80 hours looks clean until you see it was 52 and 28. The
+            split runs per week against the threshold, so the first week owes 12 hours of overtime that a period-level
+            total would hide entirely.</p>
+        </div>
+
+        <div class="panel" id="h4" hidden>
+                    <p class="srcfile">app/packages/shared/src/evv.ts</p>
+          <pre class="code"><code class="language-typescript">/** Great-circle distance in metres between two points (haversine). */
+export function distanceMeters(aLat: number, aLng: number, bLat: number, bLng: number): number {
+  const R = 6_371_000;
+  const toRad = (d: number) =&gt; (d * Math.PI) / 180;
+  const dLat = toRad(bLat - aLat), dLng = toRad(bLng - aLng);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(aLat)) * Math.cos(toRad(bLat)) * Math.sin(dLng / 2) ** 2;
+  return Math.round(2 * R * Math.asin(Math.min(1, Math.sqrt(h))));
+}</code></pre>
+          <p class="srcfile">app/packages/shared/src/payroll.ts</p>
+          <pre class="code"><code class="language-typescript">/** Split worked minutes into regular and overtime per week: anything above
+ *  `overtimeWeeklyHours` in one week is overtime. */
+export function splitOvertime(minutesByWeek: Record&lt;string, number&gt;, overtimeWeeklyHours: number): OvertimeSplit {
+  const threshold = Math.max(0, overtimeWeeklyHours) * 60;
+  const weeks: OvertimeWeek[] = Object.keys(minutesByWeek).sort().map((weekStart) =&gt; {
+    const minutes = Math.max(0, Math.round(minutesByWeek[weekStart] ?? 0));
+    const regularMinutes = Math.min(minutes, threshold);
+    return { weekStart, minutes, regularMinutes, overtimeMinutes: minutes - regularMinutes };
+  });
+  return {
+    regularMinutes: weeks.reduce((s, w) =&gt; s + w.regularMinutes, 0),
+    overtimeMinutes: weeks.reduce((s, w) =&gt; s + w.overtimeMinutes, 0),
+    weeks,
+  };
+}</code></pre>
+          <p class="srcfile">app/packages/server/src/seed/evv.ts</p>
+          <pre class="code"><code class="language-typescript">/** Minnesota visit edit reason codes (HHAeXchange MN spec) that fit each kind
+ *  of flag, and the action a coordinator records. */
+function reasonFor(flags: EvvFlag[]): { reasonCode: string; reasonNote: string; actionCode: string } {
+  if (flags.includes(&quot;manual_entry&quot;)) return { reasonCode: &quot;221&quot;, reasonNote: &quot;Times taken from the paper log and confirmed with the person.&quot;, actionCode: &quot;125&quot; };
+  if (flags.includes(&quot;out_of_range_in&quot;) || flags.includes(&quot;out_of_range_out&quot;)) return { reasonCode: &quot;204&quot;, reasonNote: &quot;Community outing; service started at the day program.&quot;, actionCode: &quot;123&quot; };
+  if (flags.includes(&quot;no_gps_in&quot;) || flags.includes(&quot;no_gps_out&quot;)) return { reasonCode: &quot;218&quot;, reasonNote: &quot;No signal in the basement; clocked as soon as the app allowed.&quot;, actionCode: &quot;123&quot; };
+  if (flags.includes(&quot;unscheduled&quot;)) return { reasonCode: &quot;222&quot;, reasonNote: &quot;Picked up the shift by phone; the schedule was not updated.&quot;, actionCode: &quot;111&quot; };
+  if (flags.includes(&quot;missing_clock_out&quot;)) return { reasonCode: &quot;209&quot;, reasonNote: &quot;Forgot to clock out at the end of the shift.&quot;, actionCode: &quot;123&quot; };
+  if (flags.includes(&quot;late_clock_in&quot;)) return { reasonCode: &quot;211&quot;, reasonNote: &quot;Forgot to clock in on arrival.&quot;, actionCode: &quot;123&quot; };
+  return { reasonCode: &quot;222&quot;, reasonNote: &quot;See the shift notes.&quot;, actionCode: &quot;123&quot; };
+}</code></pre>
+        </div>
+      </div>
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <h3>SourceIQ, Amazon Arbitrage Sourcing Engine</h3>
+      </div>
+      <p class="where">Built solo for a top Amazon US seller</p>
+      <p class="note">Built solo for a top Amazon US seller, who still runs their buying decisions on it. Published here with the client's agreement.</p>
+      <p class="stack">TypeScript, Node/Express, React, PostgreSQL, Redis, BullMQ, Docker, Amazon SP-API</p>
+    <ul class="points">
+      <li>17,500 lines of TypeScript across an Express backend, React frontend, and shared package, running on PostgreSQL, Redis, and BullMQ, containerized with Docker and deployed to a Linux host behind Caddy and HTTPS.</li>
+      <li>Built the React and TypeScript front end: 6,300 lines across 12 pages and a reusable component library (filter panels, detail drawers, stat cards, score rings, a schedule editor), with client-side routing, a shared auth context, error boundaries, and a typed REST client.</li>
+      <li>Styled it on a Tailwind design system with a hand-built SVG icon set, kept responsive across desktop and tablet, and shipped it on Vite.</li>
+      <li>Built the feature the business case rests on: parsing retailer model-number fields for concatenated values to find combo kits worth buying whole and reselling as separate units.</li>
+      <li>Integrated the Amazon Selling Partner API for live pricing and fee data, batching 20 identifiers per call to stay inside rate limits.</li>
+      <li>Restricted matching to exact UPC, EAN, ASIN, and title-confirmed model matches, with a plausibility guard that rejects anything priced outside 0.5x to 5x the buy cost. Fuzzy name matches route to a review queue, never the buy feed.</li>
+      <li>Wrote scrapers for Home Depot, Lowe's, and three Shopify storefronts, extracting JSON-LD from rendered pages where the data is absent from the initial HTML.</li>
+      <li>Added a price-refresh guard after a cross-sell defect let a $32 accessory be read as the price of a $199 tool: a checkout price is accepted only if it is at or below list and at least 30 percent of list.</li>
+      <li>Reverse-engineered a third-party REST auth chain so sourced items push straight into the client's existing buylist.</li>
+    </ul>
+
+
+      <div class="demo">
+        <div class="tabs" role="tablist" aria-label="SourceIQ working models">
+          <button type="button" role="tab" aria-selected="true" data-panel="s1">Combo-kit split</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="s2">Price guard</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="s3">Match ranking</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="s4">Source</button>
+        </div>
+
+        <div class="panel" id="s1">
+          <p class="demo-cap">The feature the whole business case rests on</p>
+          <div class="field">
+            <label for="kit-input">Retailer Model# field</label>
+            <input type="text" id="kit-input" value="AR2140-11-AR3075-22" spellcheck="false">
+          </div>
+          <div class="btnrow">
+            <button type="button" class="ghost" data-kit="AR2140-11-AR3075-22">Two-tool kit</button>
+            <button type="button" class="ghost" data-kit="KSD204-KSF118">Another brand</button>
+            <button type="button" class="ghost" data-kit="AR2140-11">Single tool</button>
+            <button type="button" class="ghost" data-kit="AR18-2140">Accessory</button>
+          </div>
+          <div class="verdict" id="kit-verdict"></div>
+          <p class="demo-note">A combo kit sells for less than its tools do separately. Finding them means reading the
+            retailer's Model# field, which concatenates the component model numbers, and knowing each brand's numbering
+            well enough to tell two tools apart from one. The production pattern table is tuned to a client's launch
+            brands and is their business logic, so the brands and formats here are stand-ins; the mechanism is the real
+            one. Note what the accessory preset does: accessory numbers reverse the digit counts, so the tool pattern
+            has to pin them or a $12 blade gets split like a two-tool kit.</p>
+        </div>
+
+        <div class="panel" id="s2" hidden>
+          <p class="demo-cap">The guard added after a $32 accessory was read as the price of a $199 tool</p>
+          <div class="guardgrid">
+            <div class="field"><label for="g-list">List price</label>
+              <input type="number" id="g-list" value="199.00" step="0.01" min="0"></div>
+            <div class="field"><label for="g-checkout">Price scraped at checkout</label>
+              <input type="number" id="g-checkout" value="32.00" step="0.01" min="0"></div>
+          </div>
+          <div class="btnrow">
+            <button type="button" class="ghost" data-fill="199.00,32.00">The defect</button>
+            <button type="button" class="ghost" data-fill="199.00,149.25">A real sale</button>
+            <button type="button" class="ghost" data-fill="199.00,219.00">Above list</button>
+          </div>
+          <div class="verdict" id="g-verdict"></div>
+          <p class="demo-note">Cross-sell markup on a retailer page can put an accessory's price where the product's
+            price should be. Buying decisions ran on this number. The guard accepts a scraped checkout price only when it
+            is at or below list and at least 30 percent of list; anything else goes to a review queue instead of into the
+            buy list.</p>
+        </div>
+
+        <div class="panel" id="s3" hidden>
+          <p class="demo-cap">Four candidate matches for one ASIN. Only one survives.</p>
+          <div class="candlist" id="cand-list"></div>
+          <div class="verdict" id="cand-verdict"></div>
+          <p class="demo-note">Toggle any attribute and watch the winner change. The ordering is the SQL window function
+            in the Source tab, run in the browser: a human's manual match outranks an image-verified one, which outranks
+            an unreviewed one, which outranks a rejected one; in stock beats out of stock; profit only breaks a tie. The
+            losing rows are deleted, so a buyer never sees two prices for the same ASIN.</p>
+        </div>
+
+        <div class="panel" id="s4" hidden>
+                    <p class="srcfile">packages/backend/src/jobs/scanProcessor.ts</p>
+          <pre class="code"><code class="language-sql">-- One scraped product can match the same ASIN several ways. Keep the single
+-- best row per ASIN and delete the rest: a human&#x27;s manual match outranks an
+-- image-verified one, which outranks an unreviewed one, which outranks one a
+-- reviewer rejected; in-stock beats out-of-stock; profit breaks the tie.
+delete from matched_products mp
+using (
+  select mp2.id, row_number() over (
+    partition by al2.asin
+    order by (mp2.match_method = &#x27;manual&#x27;)            desc,
+             (mp2.image_verified is true)             desc,
+             (mp2.image_verified is distinct from false) desc,
+             sp2.in_stock                             desc,
+             mp2.net_profit                           desc nulls last
+  ) rn
+  from matched_products mp2
+  join scraped_products sp2 on sp2.id = mp2.scraped_product_id
+  join amazon_listings  al2 on al2.id = mp2.amazon_listing_id
+  where mp2.is_bundle = false and sp2.marketplace_id = ?
+) ranked
+where mp.id = ranked.id and ranked.rn &gt; 1</code></pre>
+        </div>
+      </div>
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Bookkeeping &amp; Operations Platform</h3>
+      </div>
+      <p class="where">Built solo for a commercial janitorial company</p>
+      <p class="note">Built solo for a commercial janitorial company. The question it answers is which buildings are losing money, which their old bookkeeping could not tell them. Published here with the client's agreement.</p>
+      <p class="stack">React, TypeScript, Node, Vite</p>
+    <ul class="points">
+      <li>Second production React and TypeScript application, 2,400 lines, covering a double-entry ledger, bank CSV import that auto-categorizes 78 percent of transactions, and per-site margin reporting.</li>
+      <li>Built a bilingual English and Spanish crew time-clock interface for workers clocking in on their phones, which drove the responsive and accessibility decisions across the app.</li>
+      <li>Covered the money paths with 80 automated tests, since a bookkeeping error is silent until it is expensive.</li>
+    </ul>
+
+
+      <div class="demo">
+        <div class="tabs" role="tablist" aria-label="Bookkeeping working models">
+          <button type="button" role="tab" aria-selected="true" data-panel="b1">Margin per building</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="b2">Bank import</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="b3">Source</button>
+        </div>
+
+        <div class="panel" id="b1">
+          <p class="demo-cap">The question the old bookkeeping could not answer</p>
+          <div class="tablescroll">
+            <table class="mtable">
+              <thead><tr><th>Building</th><th>Billed</th><th>Labor</th><th>Supplies</th><th>Margin</th></tr></thead>
+              <tbody id="m-body"></tbody>
+            </table>
+          </div>
+          <div class="sliderow">
+            <label for="m-hours">Crew hours at Lakeside Office Park</label>
+            <input type="range" id="m-hours" min="40" max="200" value="88" step="4">
+            <span class="num" id="m-hours-val">88 h</span>
+          </div>
+          <div class="verdict" id="m-verdict"></div>
+          <p class="demo-note">A monthly profit and loss tells an owner the company made money. It does not tell them
+            which contract is carrying the others. Clocked crew hours priced against each building's billing does. Drag
+            the hours and watch one site cross into a loss while the company total stays positive.</p>
+        </div>
+
+        <div class="panel" id="b2" hidden>
+          <p class="demo-cap">Importing a bank statement without inventing anything</p>
+          <div class="tablescroll">
+            <table class="mtable txns">
+              <thead><tr><th>Description</th><th>Amount</th><th>Rule</th><th>Confidence</th><th>Outcome</th></tr></thead>
+              <tbody id="cat-body"></tbody>
+            </table>
+          </div>
+          <div class="sliderow">
+            <label for="cat-th">Confidence threshold</label>
+            <input type="range" id="cat-th" min="0.5" max="1" step="0.05" value="0.8">
+            <span class="num" id="cat-th-val">0.80</span>
+          </div>
+          <div class="verdict" id="cat-verdict"></div>
+          <p class="demo-note">Anything the rule pack is not confident about becomes a question for the owner rather than
+            a guess posted to the ledger. Raise the threshold and more rows turn into questions; drop it and the system
+            starts asserting things it cannot support. The shipped threshold is 0.8.</p>
+        </div>
+
+        <div class="panel" id="b3" hidden>
+                    <p class="srcfile">src/categorize/engine.ts</p>
+          <pre class="code"><code class="language-typescript">/** Below this, we ask rather than assume. */
+export const CONFIDENT = 0.8;
+
+/**
+ * Run the rule pack over everything not yet categorised. A confident rule hit
+ * becomes &#x27;auto&#x27; and is ready to post; anything else becomes &#x27;needs_client&#x27;
+ * and shows up in the question list. Nothing is ever silently guessed.
+ */
+export function categorizePending(db: DB): CategorizeSummary {
+  const rules = listRules(db);
+  const pending = db
+    .prepare(`SELECT * FROM bank_transactions WHERE status = &#x27;uncategorized&#x27; ORDER BY txn_date, id`)
+    .all() as BankTxn[];
+
+  for (const txn of pending) {
+    const rule: Rule | null = findRule(db, txn, rules);
+    if (rule &amp;&amp; rule.confidence &gt;= CONFIDENT) {
+      update.run(&#x27;auto&#x27;, rule.account_id, rule.confidence, rule.id, txn.id);
+      auto++;
+    } else {
+      update.run(&#x27;needs_client&#x27;, rule ? rule.account_id : ask.id, rule ? rule.confidence : 0, rule?.id ?? null, txn.id);
+      needsClient++;
+    }
+  }
+}</code></pre>
+        </div>
+      </div>
+    </article>
+  </section>
+  <section>
+    <h2>Where I have worked</h2>
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Pidwin</h3>
+        <span class="when">2025 - Present</span>
+      </div>
+      <p class="where">Qa Analyst · Test Automation — Miami, FL (Remote)</p>
+      <p class="note">Quality engineering for Castle, a real-money online casino platform</p>
+    <ul class="points">
+      <li>Built the automated QA framework the platform is tested with: 557 TypeScript and Playwright scripts, roughly 18,000 lines, covering site health, authentication, game logic, realtime sockets, and wallet accounting.</li>
+      <li>Found and isolated a release-blocking defect where one invalid game name crashed the entire desktop web application at startup, including the login route. Proved mobile web was unaffected, narrowed the cause to the desktop layout, and the fix shipped in the next release.</li>
+      <li>Wrote a wallet reconciliation suite that places real bets and verifies balance math to the cent. It separated genuine payout defects from animation-timing artifacts that had previously produced false bug reports.</li>
+      <li>Delivered 23 QA reports to product and engineering, including 4 formal bug write-ups, each with per-criterion pass/fail tables and screenshot evidence.</li>
+      <li>Tested the Socket.IO realtime layer across about 30 channels, confirming 31 of 69 documented events fire and taking the channel suite to 24 of 26 passing.</li>
+      <li>Verified a third-party provider-fee reward rework against its 7 acceptance criteria, confirming the payout formula held at the configured 11 percent slot fee and that accrual stayed theoretical rather than win-dependent.</li>
+      <li>Proved a reporting defect in which the wager-amount statistic double-counts, and supplied the bet-transaction sum as the correct source for true wager volume.</li>
+      <li>Validated an admin reporting rework end to end: per-game counters exact to the micro-unit, time-window filtering, staff and flagged-account exclusion, and per-role totals that sum to the whole with no gaps or double counting.</li>
+      <li>Partnered with product owners, developers, and support teams to gather and validate business and functional requirements for platform releases.</li>
+      <li>Translated stakeholder requests and formal tickets into acceptance criteria, test scenarios, and implementation-ready documentation.</li>
+      <li>Used SQL and MongoDB queries to validate data integrity, reconcile transaction discrepancies, and trace defects to their source.</li>
+      <li>Analyzed application logs, performance data, and incident trends to diagnose recurring issues and recommend corrective action.</li>
+      <li>Participated in sprint planning, backlog refinement, standups, reviews, and retrospectives, tracking risks and deliverables across multiple environments.</li>
+      <li>Coordinated release readiness and post-deployment verification across staging and development environments, flagging configuration drift after each deploy.</li>
+    </ul>
+
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Voadera</h3>
+        <span class="when">2026 - Present</span>
+      </div>
+      <p class="where">Software Developer · Contract — Remote</p>
+      <p class="note">SourceIQ, an Amazon arbitrage sourcing platform built for a top US seller</p>
+    <ul class="points">
+      <li>Sole developer for a top Amazon US seller, building the sourcing system their buying decisions run on and working directly with the owner to define what qualifies as a buyable item.</li>
+      <li>Took it from spec to production alone: requirements, architecture, build, deployment, and the operational runbooks the team uses to run scans and refresh prices.</li>
+      <li>Integrated the output into the buying tooling the client already used, so sourced items land where their buyers work instead of in a second system to check.</li>
+      <li>Set the accuracy bar the system is held to, since a bad match costs real money: exact-identifier matching only, a price plausibility guard, and a review queue for anything uncertain.</li>
+      <li>Still own it in production, including the price-refresh runbook, scan scheduling, and the database backups.</li>
+    </ul>
+
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Sleep Number Corporation</h3>
+        <span class="when">2024 - 2025</span>
+      </div>
+      <p class="where">Data &amp; Systems Analyst — Minneapolis, MN</p>
+      <p class="note">ServiceNow Virtual Agent automation and knowledge management modernization</p>
+    <ul class="points">
+      <li>Analyzed more than 10 years of ServiceNow incident and request data to find recurring failures, high-volume request types, and the workflows worth automating first.</li>
+      <li>Designed and implemented ServiceNow Virtual Agent workflows for the highest-volume request types, moving them to employee self-service.</li>
+      <li>Built requirements-based test scenarios and ran QA and UAT for Virtual Agent conversations, catalog items, and workflow automation before release.</li>
+      <li>Audited routing rules, escalation logic, and approval paths, documented the discrepancies, and drove the corrections through to deployment.</li>
+      <li>Turned raw ServiceNow exports into dashboards and reports that leadership used to prioritize which automations to fund.</li>
+      <li>Supported AI-assisted content workflows and content standards for the enterprise knowledge base, then measured search quality and adoption against the baseline.</li>
+      <li>Facilitated requirements sessions across functional teams, built consensus on scope, and handed off process documentation and training material.</li>
+    </ul>
+
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Medtronic</h3>
+        <span class="when">2022 - 2023</span>
+      </div>
+      <p class="where">Business Systems Analyst — Mounds View, MN</p>
+      <p class="note">ServiceNow catalog ownership, incident routing, and global IT portal redesign</p>
+    <ul class="points">
+      <li>Identified and reassigned hundreds of orphaned ServiceNow catalog items, which measurably improved ticket routing accuracy and put a named owner on every service.</li>
+      <li>Analyzed three years of incident and request data to find the root causes behind the highest-volume support tickets, then ranked the fixes by impact.</li>
+      <li>Investigated incident-routing failures, documented each root cause, and designed the routing rule changes that resolved them.</li>
+      <li>Executed functional, integration, regression, and user acceptance testing against documented business rules before each release.</li>
+      <li>Supported the global IT help portal redesign, covering requirements analysis, stakeholder coordination, and implementation validation.</li>
+      <li>Coordinated multilingual testing and feedback across multiple regions, checking functionality, usability, accessibility, and translation quality.</li>
+      <li>Performed data cleansing, validation, and ownership analysis in ServiceNow and advanced Excel to resolve discrepancies and make reporting trustworthy.</li>
+      <li>Built reports and dashboards that converted operational data into decisions for department leaders.</li>
+    </ul>
+
+    </article>
+  </section>
+  <section>
+    <h2>Tools and practices</h2>
+    <dl class="skills">
+      <div class="skillrow">
+        <dt>Testing &amp; Automation</dt>
+        <dd>Playwright · TypeScript test frameworks · API testing (Postman) · End-to-end, regression &amp; integration testing · User acceptance testing (UAT) · Realtime/WebSocket testing (Socket.IO) · Ledger &amp; payout reconciliation · Defect tracking &amp; root cause analysis · Release validation</dd>
+      </div>
+      <div class="skillrow">
+        <dt>Engineering</dt>
+        <dd>TypeScript · JavaScript · Node.js · Express · React · Python · SQL · MongoDB · PostgreSQL · Redis · BullMQ · Docker · REST API design · JWT auth · Git</dd>
+      </div>
+      <div class="skillrow">
+        <dt>Platforms &amp; CI/CD</dt>
+        <dd>Docker &amp; containerized deployment · Linux/SSH production deploys · Caddy reverse proxy &amp; TLS · Azure DevOps · Jenkins · CI/CD pipeline validation · Cloudflare Zero Trust · Amazon Selling Partner API</dd>
+      </div>
+      <div class="skillrow">
+        <dt>Analysis &amp; Reporting</dt>
+        <dd>Power BI · Advanced Excel · SQL &amp; MongoDB querying · KPI, trend &amp; performance analysis · Data reconciliation &amp; validation · Process mapping · Gap analysis · Dashboard &amp; report design</dd>
+      </div>
+      <div class="skillrow">
+        <dt>Business Analysis &amp; Delivery</dt>
+        <dd>Business &amp; functional requirements documentation · User stories &amp; acceptance criteria · Stakeholder facilitation &amp; consensus building · Agile/Scrum · Sprint planning &amp; backlog refinement · Lean Six Sigma (DMAIC) · PMBOK project management · Risk assessment &amp; issue management · Organizational change management · Compliance &amp; audit support</dd>
+      </div>
+      <div class="skillrow">
+        <dt>Tools</dt>
+        <dd>ServiceNow (administration &amp; reporting) · Jira · Azure DevOps · Postman · Power BI · Git</dd>
+      </div>
+      <div class="skillrow">
+        <dt>Front-End</dt>
+        <dd>React · TypeScript · JavaScript (ES6+) · HTML5 · CSS3 · Tailwind CSS · Vite · React Router · Component architecture &amp; design systems · Responsive layout · Accessibility &amp; internationalization (EN/ES) · REST API integration · WebSocket / Socket.IO clients · Git &amp; GitHub</dd>
+      </div>
+      <div class="skillrow">
+        <dt>AI Engineering</dt>
+        <dd>Claude Agent SDK · LLM API integration · Agent tool design &amp; orchestration · Streaming responses (SSE) · Prompt design &amp; system prompts · AI-assisted development (Claude Code) · AI-driven test generation</dd>
+      </div>
+    </dl>
+  </section>
+  <section>
+    <h2>Education</h2>
+    <article class="entry">
+      <h3>Bachelor of Science, Management Information Systems</h3>
+      <p class="where">University of Minnesota, Twin Cities — Minneapolis, MN</p>
+      <p class="stack">Dean's List, GPA 3.6</p>
+    </article>
+  </section>
+  <aside class="method">
+    <h2>Every number on this page is traceable</h2>
+    <p>This page is generated, not written. The figures live in one content file, and a build script renders this site and every resume I send from that same file, so a number here and a number on a document in a recruiter's inbox cannot disagree.</p>
+    <p>A checker runs before anything is written. It refuses any figure that is not in the content file, and it refuses a duration or a count attached to the wrong employer, which is the mistake that is easy to make when you tailor the same history many times. If a claim will not trace, the build fails and nothing ships.</p>
+    <p>I built that because I was applying to a lot of roles at once and wanted the documents to be auditable. It is also the shortest honest answer to what I think QA is.</p>
+  </aside>
+  <footer>Generated from a single content file. 4 roles, 4 projects.</footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n) { return "$" + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","); };
+  var prefersReduced = function () {
+    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  };
+
+  /* ---------- tabs ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".tabs"), function (strip) {
+    var btns = Array.prototype.slice.call(strip.querySelectorAll("button"));
+    strip.addEventListener("click", function (e) {
+      var b = e.target.closest("button");
+      if (!b) return;
+      btns.forEach(function (o) {
+        var on = o === b;
+        o.setAttribute("aria-selected", on ? "true" : "false");
+        var panel = $(o.getAttribute("data-panel"));
+        if (panel) panel.hidden = !on;
+      });
+    });
+  });
+
+  /* ---------- Castle 1: settle before you read ---------- */
+  var go = $("bet-go");
+  if (go) {
+    var screenEl = $("bal-screen"), truthEl = $("bal-truth"), vN = $("v-naive"), vS = $("v-settled");
+    var START = 1000, STAKE = 25, WIN = 67.5, DUR = 1200, running = false;
+    var readScreen = function () { return parseFloat(screenEl.textContent.replace(/[$,]/g, "")); };
+
+    go.addEventListener("click", function () {
+      if (running) return;
+      running = true; go.disabled = true;
+      var target = START - STAKE + WIN;
+      truthEl.textContent = money(target);
+      screenEl.textContent = money(START);
+      vN.className = "verdict"; vS.className = "verdict";
+      vN.textContent = "Assert immediately → reading…";
+      vS.textContent = "Assert once the counter settles → polling…";
+
+      var done = function () { screenEl.textContent = money(target); running = false; go.disabled = false; };
+      if (prefersReduced()) {
+        setTimeout(done, 600);
+      } else {
+        // Driven off elapsed wall-clock time, not frame cadence: a dropped frame
+        // then moves the counter further next tick instead of parking it on a
+        // value long enough to look settled.
+        var t0 = Date.now();
+        var tick = setInterval(function () {
+          var p = Math.min(1, (Date.now() - t0) / DUR);
+          screenEl.textContent = money(START + (target - START) * (1 - Math.pow(1 - p, 3)));
+          if (p >= 1) { clearInterval(tick); done(); }
+        }, 16);
+      }
+
+      setTimeout(function () {
+        var got = readScreen(), ok = Math.abs(got - target) < 0.005;
+        vN.className = "verdict " + (ok ? "pass" : "fail");
+        vN.textContent = (ok ? "PASS" : "FAIL") + "  expected " + money(target) + ", read " + money(got) +
+          (ok ? "" : "  → filed as a payout defect");
+      }, 180);
+
+      var last = null, reads = 0, moved = false, stable = 0;
+      var poll = setInterval(function () {
+        var v = readScreen(); reads++;
+        if (last !== null && Math.abs(v - last) > 0.005) { moved = true; stable = 0; }
+        else if (last !== null) stable++;
+        if (moved && stable >= 2) {
+          clearInterval(poll);
+          var ok2 = Math.abs(v - target) < 0.005;
+          vS.className = "verdict " + (ok2 ? "pass" : "fail");
+          vS.textContent = (ok2 ? "PASS" : "FAIL") + "  expected " + money(target) + ", read " + money(v) +
+            "  → settled after " + reads + " reads";
+        }
+        last = v;
+        if (reads > 60) clearInterval(poll);
+      }, 90);
+    });
+  }
+
+  /* ---------- Castle 2: role cycling ---------- */
+  var roleBtns = $("role-btns");
+  if (roleBtns) {
+    var permGrid = $("perm-grid"), roleLog = $("role-log");
+    var ACTIONS = ["View own wallet", "Place a bet", "Claim rank reward", "Adjust a balance", "Read audit log", "Suspend an account"];
+    var ROLES = {
+      player: { label: "Player",  allow: [1, 1, 0, 0, 0, 0] },
+      vip:    { label: "VIP",     allow: [1, 1, 1, 0, 0, 0] },
+      staff:  { label: "Staff",   allow: [1, 1, 1, 0, 1, 0] },
+      admin:  { label: "Admin",   allow: [1, 1, 1, 1, 1, 1] }
+    };
+    var current = "player";
+    var drawRoles = function (key) {
+      var r = ROLES[key];
+      permGrid.innerHTML = "";
+      ACTIONS.forEach(function (a, i) {
+        var el = document.createElement("div");
+        el.className = "perm " + (r.allow[i] ? "on" : "off");
+        el.textContent = (r.allow[i] ? "✓ " : "✕ ") + a;
+        permGrid.appendChild(el);
+      });
+      Array.prototype.forEach.call(roleBtns.querySelectorAll("button"), function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-role") === key ? "true" : "false");
+      });
+      roleLog.className = "verdict pass";
+      roleLog.textContent = "PATCH /admin/users/:id { role: \"" + key + "\" }  → recorded previous value \"" +
+        current + "\"  → ran " + r.allow.reduce(function (s, v) { return s + v; }, 0) + " permitted / " +
+        r.allow.filter(function (v) { return !v; }).length + " forbidden checks  → reverted to \"" + current + "\"";
+      current = key;
+    };
+    roleBtns.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-role]");
+      if (b) drawRoles(b.getAttribute("data-role"));
+    });
+    drawRoles("player");
+    roleLog.className = "verdict";
+    roleLog.textContent = "Pick a role to promote the test account into.";
+  }
+
+  /* ---------- Castle 3: socket coverage ---------- */
+  var coverGrid = $("cover-grid");
+  if (coverGrid) {
+    // 69 documented events, 31 observed firing. Deterministic spread, not random,
+    // so the picture is the same for every visitor.
+    var TOTAL = 69, FIRED = 31, step = TOTAL / FIRED, next = 0, lit = 0;
+    for (var i = 0; i < TOTAL; i++) {
+      var cell = document.createElement("div");
+      cell.className = "cell";
+      if (lit < FIRED && i >= Math.round(next)) { cell.className += " fired"; lit++; next += step; }
+      coverGrid.appendChild(cell);
+    }
+    $("cover-stat").textContent = FIRED + " of " + TOTAL + " documented events observed firing across about 30 channels. " +
+      "Channel suite: 24 of 26 passing.";
+  }
+
+  /* ---------- Harbor 1: EVV exception ---------- */
+  var gps = $("evv-gps");
+  if (gps) {
+    var rng = $("evv-range"), out = $("evv-out");
+    var flagBox = $("evv-flags"), reasonWrap = $("evv-reasonwrap"), codeSel = $("evv-code"), status = $("evv-status");
+    var CODES = {
+      no_gps_in:         [["218", "Attendant unable to connect to internet or EVV system down"], ["222", "Other"]],
+      out_of_range_in:   [["204", "Member received services outside of the home"], ["207", "Address did not link to the Member (GPS)"], ["222", "Other"]],
+      missing_clock_out: [["209", "Attendant failed to call out"], ["211", "Attendant called in to or out of the EVV system early or late"], ["222", "Other"]]
+    };
+    var LABELS = { no_gps_in: "No GPS at clock-in", out_of_range_in: "Clock-in away from the home", missing_clock_out: "Missing clock-out" };
+    var render = function () {
+      var flags = [];
+      if (!gps.checked) flags.push("no_gps_in");
+      else if (!rng.checked) flags.push("out_of_range_in");
+      if (!out.checked) flags.push("missing_clock_out");
+
+      flagBox.innerHTML = "";
+      if (!flags.length) {
+        var ok = document.createElement("span");
+        ok.className = "flag clean"; ok.textContent = "No exceptions";
+        flagBox.appendChild(ok);
+        reasonWrap.hidden = true;
+        status.className = "verdict pass";
+        status.textContent = "Ready to send to HHAeXchange. Verified clock-in and clock-out, no reason code needed.";
+        return;
+      }
+      flags.forEach(function (f) {
+        var el = document.createElement("span");
+        el.className = "flag"; el.textContent = LABELS[f];
+        flagBox.appendChild(el);
+      });
+      var opts = CODES[flags[0]], prev = codeSel.value;
+      codeSel.innerHTML = "";
+      var blank = document.createElement("option");
+      blank.value = ""; blank.textContent = "— none on file —";
+      codeSel.appendChild(blank);
+      opts.forEach(function (o) {
+        var el = document.createElement("option");
+        el.value = o[0]; el.textContent = o[0] + "  " + o[1];
+        codeSel.appendChild(el);
+      });
+      if (prev && opts.some(function (o) { return o[0] === prev; })) codeSel.value = prev;
+      reasonWrap.hidden = false;
+      if (!codeSel.value) {
+        status.className = "verdict hold";
+        status.textContent = "Blocked. " + flags.length + " exception" + (flags.length > 1 ? "s" : "") +
+          " on this visit, and Minnesota will not take it without a coded reason.";
+      } else {
+        status.className = "verdict pass";
+        status.textContent = "Ready to send. Reason " + codeSel.value +
+          " on file, action 123 Supervisor approved change recorded against the edit.";
+      }
+    };
+    [gps, rng, out, codeSel].forEach(function (el) { el.addEventListener("change", render); });
+    render();
+  }
+
+  /* ---------- Harbor 2: geofence ---------- */
+  var geoSvg = $("geo-svg");
+  if (geoSvg) {
+    var HOUSE = { lat: 44.9712, lng: -93.2604 };   // the platform's demo service address
+    var pt = { lat: 44.9715, lng: -93.2606 };
+    var radiusEl = $("geo-radius"), radiusVal = $("geo-radius-val"), geoV = $("geo-verdict");
+
+    // haversine, same formula as distanceMeters in the Source tab
+    var distanceMeters = function (aLat, aLng, bLat, bLng) {
+      var R = 6371000, toRad = function (d) { return (d * Math.PI) / 180; };
+      var dLat = toRad(bLat - aLat), dLng = toRad(bLng - aLng);
+      var h = Math.pow(Math.sin(dLat / 2), 2) +
+              Math.cos(toRad(aLat)) * Math.cos(toRad(bLat)) * Math.pow(Math.sin(dLng / 2), 2);
+      return Math.round(2 * R * Math.asin(Math.min(1, Math.sqrt(h))));
+    };
+    var fmtDist = function (m) { return m >= 1000 ? (m / 1000).toFixed(2) + " km" : m + " m"; };
+
+    var drawGeo = function () {
+      var radius = parseInt(radiusEl.value, 10);
+      radiusVal.textContent = radius + " m";
+      var d = distanceMeters(HOUSE.lat, HOUSE.lng, pt.lat, pt.lng);
+      var inside = d <= radius;
+      var view = Math.max(radius * 2.4, d * 2.3, 120);     // metres across the frame
+      var px = 150 / view;                                  // metres -> svg units
+      var cx = 160, cy = 95;
+      var ang = Math.atan2(pt.lat - HOUSE.lat, (pt.lng - HOUSE.lng) * Math.cos(HOUSE.lat * Math.PI / 180));
+      var dx = Math.cos(ang) * d * px, dy = -Math.sin(ang) * d * px;
+      var ring = Math.max(3, radius * px);
+      var col = inside ? "var(--ok)" : "var(--risk)";
+      geoSvg.innerHTML =
+        '<circle cx="' + cx + '" cy="' + cy + '" r="' + ring + '" fill="var(--accent)" fill-opacity="0.07" ' +
+          'stroke="var(--accent)" stroke-opacity="0.5" stroke-dasharray="4 3" stroke-width="1"/>' +
+        '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + dx) + '" y2="' + (cy + dy) + '" ' +
+          'stroke="' + col + '" stroke-width="1" stroke-opacity="0.55"/>' +
+        '<rect x="' + (cx - 4) + '" y="' + (cy - 4) + '" width="8" height="8" fill="var(--accent)"/>' +
+        '<circle cx="' + (cx + dx) + '" cy="' + (cy + dy) + '" r="4.5" fill="' + col + '"/>' +
+        '<text x="' + cx + '" y="' + (cy + 18) + '" text-anchor="middle" font-size="7" ' +
+          'font-family="monospace" fill="var(--fg-faint)">service address</text>' +
+        '<text x="12" y="18" font-size="8" font-family="monospace" fill="var(--fg-faint)">' +
+          'frame ≈ ' + fmtDist(Math.round(view)) + ' across</text>';
+      geoV.className = "verdict " + (inside ? "pass" : "fail");
+      geoV.textContent = inside
+        ? "ACCEPTED. Clock-in " + fmtDist(d) + " from the service address, inside the " + radius + " m geofence."
+        : "EXCEPTION out_of_range_in. Clock-in " + fmtDist(d) + " from the service address, outside the " +
+          radius + " m geofence. Needs reason 204 or 207 before Minnesota will take the visit.";
+    };
+    radiusEl.addEventListener("input", drawGeo);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-geo]"), function (b) {
+      b.addEventListener("click", function () {
+        var p = b.getAttribute("data-geo").split(",");
+        pt = { lat: parseFloat(p[0]), lng: parseFloat(p[1]) };
+        Array.prototype.forEach.call(document.querySelectorAll("[data-geo]"), function (o) {
+          o.setAttribute("aria-pressed", o === b ? "true" : "false");
+        });
+        drawGeo();
+      });
+    });
+    drawGeo();
+  }
+
+  /* ---------- Harbor 3: overtime split ---------- */
+  var otRows = $("ot-rows");
+  if (otRows) {
+    var WEEKS = [{ label: "Week 1", h: 52 }, { label: "Week 2", h: 28 }];
+    var THRESHOLD = 40, RATE = 19.25, MULT = 1.5;
+    var totalEl = $("ot-total");
+    var redraw = function () {
+      var reg = 0, ot = 0;
+      WEEKS.forEach(function (w, i) {
+        var r = Math.min(w.h, THRESHOLD), o = w.h - r;
+        reg += r; ot += o;
+        var el = $("ot-split-" + i);
+        if (el) el.innerHTML = r + " reg" + (o > 0 ? " + <b>" + o + " OT</b>" : "");
+        var v = $("ot-val-" + i);
+        if (v) v.textContent = w.h + " h";
+      });
+      var pay = reg * RATE + ot * RATE * MULT;
+      var naive = (reg + ot) * RATE;
+      totalEl.className = "verdict " + (ot > 0 ? "hold" : "pass");
+      totalEl.textContent = (reg + ot) + " h over the period → " + reg + " regular + " + ot +
+        " overtime = " + money(pay) + " at " + money(RATE) + "/h" +
+        (ot > 0 ? ".  A period-level total would have paid " + money(naive) + ", short by " + money(pay - naive) + "." : ".");
+    };
+    WEEKS.forEach(function (w, i) {
+      var row = document.createElement("div");
+      row.className = "wk";
+      row.innerHTML = '<label for="ot-' + i + '">' + w.label + '</label>' +
+        '<input type="range" id="ot-' + i + '" min="0" max="70" step="1" value="' + w.h + '">' +
+        '<span class="split"><span class="num" id="ot-val-' + i + '"></span> — <span id="ot-split-' + i + '"></span></span>';
+      otRows.appendChild(row);
+      row.querySelector("input").addEventListener("input", function (e) {
+        WEEKS[i].h = parseInt(e.target.value, 10);
+        redraw();
+      });
+    });
+    redraw();
+  }
+
+  /* ---------- SourceIQ 1: combo-kit split ---------- */
+  var kitInput = $("kit-input");
+  if (kitInput) {
+    // Stand-in brands and formats. The production table is tuned to a client's
+    // launch brands and is their business logic, so it is not published here.
+    // The mechanism and the digit-count discipline below are the real ones.
+    var BRAND_PATTERNS = [
+      // Arbor tools are NNNN-NN. Arbor ACCESSORIES are NN-NNNN, so the tool
+      // pattern must pin the digit counts or a blade gets split like a kit.
+      { brand: "Arbor",   patterns: [/\bAR\d{4}-\d{2}\b/g] },
+      { brand: "Kestrel", patterns: [/\bKS[A-Z]\d{3}\b/g] },
+      { brand: "Volt",    patterns: [/\bVT\d{3,4}[A-Z]?\b/g] }
+    ];
+    var kitV = $("kit-verdict");
+    var parse = function (raw) {
+      var s = String(raw || "").toUpperCase();
+      var best = null;
+      BRAND_PATTERNS.forEach(function (bp) {
+        var found = [];
+        bp.patterns.forEach(function (re) {
+          re.lastIndex = 0;
+          var m;
+          while ((m = re.exec(s)) !== null) { if (found.indexOf(m[0]) === -1) found.push(m[0]); }
+        });
+        if (found.length && (!best || found.length > best.models.length)) best = { brand: bp.brand, models: found };
+      });
+      return best;
+    };
+    var judge = function () {
+      var p = parse(kitInput.value);
+      if (!p) {
+        kitV.className = "verdict hold";
+        kitV.textContent = "No model number matched any brand pattern. Falls through to the title scan, then to the review queue.";
+        return;
+      }
+      if (p.models.length >= 2) {
+        kitV.className = "verdict pass";
+        kitV.textContent = "SPLITTABLE BUNDLE  brand " + p.brand + ", confidence high, method model_field\n" +
+          "components: " + p.models.join("  +  ") + "\n" +
+          "Each component is priced and matched on Amazon separately, and the kit is bought only if the parts beat it.";
+      } else {
+        kitV.className = "verdict hold";
+        kitV.textContent = "SINGLE ITEM  brand " + p.brand + ", one model number (" + p.models[0] +
+          "). Not splittable, so it is priced as one unit.";
+      }
+    };
+    kitInput.addEventListener("input", judge);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-kit]"), function (b) {
+      b.addEventListener("click", function () { kitInput.value = b.getAttribute("data-kit"); judge(); });
+    });
+    judge();
+  }
+
+  /* ---------- SourceIQ 2: price guard ---------- */
+  var gList = $("g-list");
+  if (gList) {
+    var gCheck = $("g-checkout"), gV = $("g-verdict"), FLOOR = 0.30;
+    var judge2 = function () {
+      var list = parseFloat(gList.value), co = parseFloat(gCheck.value);
+      if (!isFinite(list) || !isFinite(co) || list <= 0) {
+        gV.className = "verdict hold"; gV.textContent = "Enter a list price and a scraped price."; return;
+      }
+      var floor = list * FLOOR;
+      if (co > list) {
+        gV.className = "verdict fail";
+        gV.textContent = "REJECTED → review queue. " + money(co) + " is above the " + money(list) +
+          " list price, so the scrape did not read a checkout price.";
+      } else if (co < floor) {
+        gV.className = "verdict fail";
+        gV.textContent = "REJECTED → review queue. " + money(co) + " is below the " + money(floor) +
+          " floor (30% of list). This is the shape of a cross-sell accessory read in place of the product.";
+      } else {
+        gV.className = "verdict pass";
+        gV.textContent = "ACCEPTED. " + money(co) + " sits between the " + money(floor) + " floor and the " +
+          money(list) + " list price. Margin is computed from it.";
+      }
+    };
+    [gList, gCheck].forEach(function (el) { el.addEventListener("input", judge2); });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-fill]"), function (b) {
+      b.addEventListener("click", function () {
+        var p = b.getAttribute("data-fill").split(",");
+        gList.value = p[0]; gCheck.value = p[1]; judge2();
+      });
+    });
+    judge2();
+  }
+
+  /* ---------- SourceIQ 3: match ranking ---------- */
+  var candList = $("cand-list");
+  if (candList) {
+    var CANDS = [
+      { nm: "home-depot #41882", manual: false, verified: true,  rejected: false, stock: true,  profit: 8.40 },
+      { nm: "lowes #77310",      manual: true,  verified: false, rejected: false, stock: true,  profit: 6.15 },
+      { nm: "toolup #20551",     manual: false, verified: false, rejected: false, stock: true,  profit: 11.90 },
+      { nm: "redtool #90244",    manual: false, verified: false, rejected: true,  stock: false, profit: 14.75 }
+    ];
+    var candV = $("cand-verdict");
+    // ORDER BY from the window function, in the same precedence
+    var rank = function (c) {
+      return [c.manual ? 0 : 1, c.verified ? 0 : 1, c.rejected ? 1 : 0, c.stock ? 0 : 1, -c.profit];
+    };
+    var drawCands = function () {
+      var order = CANDS.slice().sort(function (a, b) {
+        var ra = rank(a), rb = rank(b);
+        for (var i = 0; i < ra.length; i++) { if (ra[i] !== rb[i]) return ra[i] - rb[i]; }
+        return 0;
+      });
+      candList.innerHTML = "";
+      order.forEach(function (c, i) {
+        var row = document.createElement("div");
+        row.className = "cand" + (i === 0 ? " win" : "");
+        var flags = [["manual", "manual match"], ["verified", "image verified"], ["rejected", "image rejected"], ["stock", "in stock"]];
+        row.innerHTML = '<span class="rank">' + (i === 0 ? "KEEP" : "del") + '</span>' +
+          '<span class="nm">' + c.nm + ' &middot; ' + money(c.profit) + '</span>';
+        var tg = document.createElement("span");
+        tg.className = "toggles";
+        flags.forEach(function (f) {
+          var b = document.createElement("button");
+          b.type = "button"; b.className = "ghost"; b.textContent = f[1];
+          b.setAttribute("aria-pressed", c[f[0]] ? "true" : "false");
+          b.addEventListener("click", function () {
+            c[f[0]] = !c[f[0]];
+            if (f[0] === "verified" && c.verified) c.rejected = false;
+            if (f[0] === "rejected" && c.rejected) c.verified = false;
+            drawCands();
+          });
+          tg.appendChild(b);
+        });
+        row.appendChild(tg);
+        candList.appendChild(row);
+      });
+      candV.className = "verdict pass";
+      candV.textContent = "KEEP " + order[0].nm + "  →  " + (order.length - 1) +
+        " duplicate rows deleted for this ASIN.";
+    };
+    drawCands();
+  }
+
+  /* ---------- Bookkeeping 1: margin per building ---------- */
+  var mBody = $("m-body");
+  if (mBody) {
+    var hoursEl = $("m-hours"), hoursVal = $("m-hours-val"), mV = $("m-verdict"), RATE2 = 21.5;
+    var SITES = [
+      { name: "Northgate Medical",      billed: 4200, hours: 112, supplies: 310 },
+      { name: "Lakeside Office Park",   billed: 2650, hours: 88,  supplies: 240, live: true },
+      { name: "Cedar Ridge Apartments", billed: 1875, hours: 54,  supplies: 155 },
+      { name: "Harrison Distribution",  billed: 5400, hours: 148, supplies: 520 }
+    ];
+    var drawMargin = function () {
+      var h = parseInt(hoursEl.value, 10);
+      hoursVal.textContent = h + " h";
+      mBody.innerHTML = "";
+      var total = 0, losers = [];
+      SITES.forEach(function (s) {
+        var hrs = s.live ? h : s.hours;
+        var labor = hrs * RATE2, margin = s.billed - labor - s.supplies;
+        total += margin;
+        if (margin < 0) losers.push(s.name);
+        var tr = document.createElement("tr");
+        if (margin < 0) tr.className = "loss";
+        [s.name, money(s.billed), money(labor), money(s.supplies),
+         (margin < 0 ? "−" : "") + money(Math.abs(margin))].forEach(function (v) {
+          var td = document.createElement("td"); td.textContent = v; tr.appendChild(td);
+        });
+        mBody.appendChild(tr);
+      });
+      mV.className = "verdict " + (losers.length ? "fail" : "pass");
+      mV.textContent = losers.length
+        ? "Company margin " + money(total) + " and still healthy, while " + losers.join(" and ") +
+          " loses money every month. The P&L alone never shows this."
+        : "Company margin " + money(total) + ". Every building is carrying its own weight.";
+    };
+    hoursEl.addEventListener("input", drawMargin);
+    drawMargin();
+  }
+
+  /* ---------- Bookkeeping 2: bank import ---------- */
+  var catBody = $("cat-body");
+  if (catBody) {
+    var thEl = $("cat-th"), thVal = $("cat-th-val"), catV = $("cat-verdict");
+    var ROWS = [
+      { d: "HOME DEPOT #2841 BLAINE MN",      a: -184.22, rule: "vendor contains HOME DEPOT", conf: 0.96, acct: "Supplies" },
+      { d: "SHELL OIL 574212",                a: -61.40,  rule: "vendor contains SHELL",      conf: 0.94, acct: "Vehicle fuel" },
+      { d: "GUSTO PAY 8812 EMPLOYEE",         a: -4120.00,rule: "vendor contains GUSTO",      conf: 0.99, acct: "Payroll" },
+      { d: "DEPOSIT REF 7741",                a: 2650.00, rule: "no rule matched",            conf: 0.00, acct: "Ask the owner" },
+      { d: "AMZN MKTP US*2K41X",              a: -96.88,  rule: "vendor contains AMZN",       conf: 0.72, acct: "Supplies" },
+      { d: "TRANSFER TO SAVINGS 4471",        a: -1000.00,rule: "description matches TRANSFER",conf: 0.88, acct: "Inter-account transfer" }
+    ];
+    var drawImport = function () {
+      var th = parseFloat(thEl.value);
+      thVal.textContent = th.toFixed(2);
+      catBody.innerHTML = "";
+      var auto = 0;
+      ROWS.forEach(function (r) {
+        var ok = r.conf >= th;
+        if (ok) auto++;
+        var tr = document.createElement("tr");
+        if (!ok) tr.className = "ask";
+        [r.d, money(Math.abs(r.a)), r.rule, r.conf.toFixed(2), ok ? "auto → " + r.acct : "ask the owner"]
+          .forEach(function (v) { var td = document.createElement("td"); td.textContent = v; tr.appendChild(td); });
+        catBody.appendChild(tr);
+      });
+      var pct = Math.round((auto / ROWS.length) * 100);
+      catV.className = "verdict " + (auto === ROWS.length ? "hold" : "pass");
+      catV.textContent = auto + " of " + ROWS.length + " posted automatically (" + pct + "%), " +
+        (ROWS.length - auto) + (ROWS.length - auto === 1 ? " held as a question." : " held as questions.") +
+        (auto === ROWS.length ? "  Nothing is being asked, which means the threshold is now low enough to guess." : "");
+    };
+    thEl.addEventListener("input", drawImport);
+    drawImport();
+  }
+
+  /* ---------- syntax highlighting ---------- */
+  if (window.hljs) {
+    try { hljs.highlightAll(); } catch (e) { /* plain mono is a fine fallback */ }
+  }
+})();
+</script>
+</body>
+</html>
