@@ -496,7 +496,7 @@ pre.code code { font-family: var(--font-mono); font-size: 0.73rem; line-height: 
         <h3>Harbor, HCBS Compliance &amp; EVV Platform</h3>
       </div>
       <p class="where">Built solo, Minnesota 245D / HCBS provider software</p>
-      <p class="note">My own product, built solo. Minnesota 245D and Home and Community-Based Services providers have to produce documentation on demand for a licensor, and the state requires electronic visit verification on every visit. Harbor does both. Built and demo-ready; no agency is running on it yet.</p>
+      <p class="note">My own product, built solo. Minnesota 245D and Home and Community-Based Services providers have to produce documentation on demand for a licensor, the state requires electronic visit verification on every visit, and the billing has to come out of the same records. Harbor does all three. Built and demo-ready; no agency is running on it yet. The screenshots are a seeded demo agency: the people, the visits and the money are all invented.</p>
       <p class="stack">TypeScript, React, Node, SQLite</p>
     <ul class="points">
       <li>Built a compliance and documentation platform for Minnesota 245D and Home and Community-Based Services providers: 16 modules covering person-centered service plans, medication administration, scheduling, electronic visit verification, payroll, and billing readiness, with 261 automated server tests.</li>
@@ -504,8 +504,25 @@ pre.code code { font-family: var(--font-mono); font-size: 0.73rem; line-height: 
       <li>Tested the money paths the way a payer would audit them: payroll periods and overtime splits, service authorizations and units drawn from signed notes, visit times reconciled to the minute across time zones, and exception approvals that must be recorded before a visit can be transmitted.</li>
       <li>Wrote the requirements from primary sources, reading the state specification and regulation directly rather than working from summaries, and built a 14-file licensor packet that produces the evidence an auditor asks for.</li>
       <li>Designed the interface around two very different users, an agency owner on a desktop and a direct support professional clocking in on a phone, and verified every screen at 375 pixels as well as full width.</li>
+      <li>Wrote the X12 837P claim file writer from the Minnesota Uniform Companion Guide rather than a library: ISA and GS envelopes through the 2400 service lines, atypical-provider billing where there is no NPI, and deterministic output so a test can compare a whole file. Every value the state's own guide leaves ambiguous is marked in the code to be confirmed against the test region before a real file is sent.</li>
     </ul>
 
+      <figure class="shot">
+        <img src="img/harbor-evv-state.jpg" alt="State EVV. Every clocked visit is checked against HHAeXchange's published Minnesota rules and tracked through to what the state did with it. Practice mode means nothing leaves the building." loading="lazy" width="1200" height="639">
+        <figcaption>State EVV. Every clocked visit is checked against HHAeXchange's published Minnesota rules and tracked through to what the state did with it. Practice mode means nothing leaves the building.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/harbor-dashboard.jpg" alt="The compliance view an owner opens first: what is out of date, what is due, and the licensor packet that exports the evidence for it as one ZIP." loading="lazy" width="1200" height="639">
+        <figcaption>The compliance view an owner opens first: what is out of date, what is due, and the licensor packet that exports the evidence for it as one ZIP.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/harbor-claims.jpg" alt="Claims. Signed notes become X12 837P files for Minnesota Health Care Programs, built from the state companion guide rather than a library. A coordinator builds the batch, an owner approves it, and only then can the file be downloaded." loading="lazy" width="1200" height="639">
+        <figcaption>Claims. Signed notes become X12 837P files for Minnesota Health Care Programs, built from the state companion guide rather than a library. A coordinator builds the batch, an owner approves it, and only then can the file be downloaded.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/harbor-payroll.jpg" alt="Payroll from clocked shifts, with the flags that stop a period being closed: a staff member with hours and no rate on file, and visits without a signed note." loading="lazy" width="1200" height="639">
+        <figcaption>Payroll from clocked shifts, with the flags that stop a period being closed: a staff member with hours and no rate on file, and visits without a signed note.</figcaption>
+      </figure>
 
       <div class="demo">
         <div class="tabs" role="tablist" aria-label="Harbor working models">
@@ -609,7 +626,7 @@ function reasonFor(flags: EvvFlag[]): { reasonCode: string; reasonNote: string; 
         <h3>SourceIQ, Amazon Arbitrage Sourcing Engine</h3>
       </div>
       <p class="where">Built solo for a top Amazon US seller</p>
-      <p class="note">Built solo for a top Amazon US seller, who still runs their buying decisions on it. Published here with the client's agreement.</p>
+      <p class="note">Built solo for a top Amazon US seller, who still runs their buying decisions on it. Published here with the client's agreement. The screenshots run against a synthetic database I built for this page, with invented brands and invented margins. Their real scan output is the whole value of the product to them, so it is not on a public page; what you are looking at is the software, not their buy list.</p>
       <p class="stack">TypeScript, Node/Express, React, PostgreSQL, Redis, BullMQ, Docker, Amazon SP-API</p>
     <ul class="points">
       <li>17,500 lines of TypeScript across an Express backend, React frontend, and shared package, running on PostgreSQL, Redis, and BullMQ, containerized with Docker and deployed to a Linux host behind Caddy and HTTPS.</li>
@@ -623,6 +640,22 @@ function reasonFor(flags: EvvFlag[]): { reasonCode: string; reasonNote: string; 
       <li>Reverse-engineered a third-party REST auth chain so sourced items push straight into the client's existing buylist.</li>
     </ul>
 
+      <figure class="shot">
+        <img src="img/siq-opportunities.jpg" alt="The screen the client's buying runs on. Buy cost, Amazon price, fees, net profit and ROI per row, with a score ring and a one-click push into the buylist they already used." loading="lazy" width="1200" height="639">
+        <figcaption>The screen the client's buying runs on. Buy cost, Amazon price, fees, net profit and ROI per row, with a score ring and a one-click push into the buylist they already used.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/siq-dashboard.jpg" alt="Sourcing performance across marketplaces: opportunities found, average profit and ROI, and the most recent scans with scraped and matched counts." loading="lazy" width="1200" height="639">
+        <figcaption>Sourcing performance across marketplaces: opportunities found, average profit and ROI, and the most recent scans with scraped and matched counts.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/siq-scans.jpg" alt="Scan history and scheduling. Each run records what it scraped and what it matched, so a source that quietly stops returning data is visible rather than silent." loading="lazy" width="1200" height="639">
+        <figcaption>Scan history and scheduling. Each run records what it scraped and what it matched, so a source that quietly stops returning data is visible rather than silent.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/siq-marketplaces.jpg" alt="Source configuration. Each retailer has its own scraper type, scan interval and query." loading="lazy" width="1200" height="639">
+        <figcaption>Source configuration. Each retailer has its own scraper type, scan interval and query.</figcaption>
+      </figure>
 
       <div class="demo">
         <div class="tabs" role="tablist" aria-label="SourceIQ working models">
@@ -713,7 +746,7 @@ where mp.id = ranked.id and ranked.rn &gt; 1</code></pre>
         <h3>Bookkeeping &amp; Operations Platform</h3>
       </div>
       <p class="where">Built solo for a commercial janitorial company</p>
-      <p class="note">Built solo for a commercial janitorial company. The question it answers is which buildings are losing money, which their old bookkeeping could not tell them. Published here with the client's agreement.</p>
+      <p class="note">Built solo for a commercial janitorial company. The question it answers is which buildings are losing money, which their old bookkeeping could not tell them. Published here with the client's agreement, and the screenshots are the placeholder book the test suite builds, not their accounts.</p>
       <p class="stack">React, TypeScript, Node, Vite</p>
     <ul class="points">
       <li>Second production React and TypeScript application, 2,400 lines, covering a double-entry ledger, bank CSV import that auto-categorizes 78 percent of transactions, and per-site margin reporting.</li>
@@ -721,6 +754,22 @@ where mp.id = ranked.id and ranked.rn &gt; 1</code></pre>
       <li>Covered the money paths with 80 automated tests, since a bookkeeping error is silent until it is expensive.</li>
     </ul>
 
+      <figure class="shot">
+        <img src="img/bk-buildings.jpg" alt="The question the whole system exists to answer: which buildings are losing money. Margin per site from clocked hours, with labour running over what the jobs were bid at called out in dollars." loading="lazy" width="1200" height="639">
+        <figcaption>The question the whole system exists to answer: which buildings are losing money. Margin per site from clocked hours, with labour running over what the jobs were bid at called out in dollars.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/bk-overview.jpg" alt="The book at a glance. The trial balance ties and the balance sheet balances on every load; if they ever did not, that is the first thing you would see." loading="lazy" width="1200" height="639">
+        <figcaption>The book at a glance. The trial balance ties and the balance sheet balances on every load; if they ever did not, that is the first thing you would see.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/bk-review.jpg" alt="Bank import categorizes most transactions automatically and parks the rest. This is the queue of what it refused to guess at." loading="lazy" width="1200" height="639">
+        <figcaption>Bank import categorizes most transactions automatically and parks the rest. This is the queue of what it refused to guess at.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/bk-punch.jpg" alt="The crew clock in on their own phones in English or Spanish. This screen is why the app was built mobile-first." loading="lazy" width="1200" height="639">
+        <figcaption>The crew clock in on their own phones in English or Spanish. This screen is why the app was built mobile-first.</figcaption>
+      </figure>
 
       <div class="demo">
         <div class="tabs" role="tablist" aria-label="Bookkeeping working models">
