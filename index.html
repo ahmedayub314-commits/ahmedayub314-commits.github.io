@@ -392,6 +392,39 @@ pre.code code { font-family: var(--font-mono); font-size: 0.73rem; line-height: 
     <h2>Things I built</h2>
     <article class="entry">
       <div class="entry-head">
+        <h3>Corporate Metrics, ARR Reporting on Databricks</h3>
+      </div>
+      <p class="where">Built solo on Databricks Free Edition</p>
+      <p class="note">Built in a day against a data analyst job description that asked for Databricks, SQL, Python and AI-assisted development. I had not used Databricks before reading it. The screenshots below are the running app in my own workspace; the code is public. Three things went wrong while building it and all three are in the commit history, because that is the more useful half of the story.</p>
+      <p class="stack">Databricks (Unity Catalog, SQL warehouse, Apps), SQL, Python, Streamlit</p>
+    <ul class="points">
+      <li>Built a dimensional model in Unity Catalog: one additive ARR movement fact over customer, plan and date dimensions, carrying 24 months of seeded subscription history across 44 customers.</li>
+      <li>Computed the metrics a SaaS board pack runs on in SQL: ARR, the monthly movement waterfall of new, expansion, contraction and churn, and cohort net and gross revenue retention on a trailing twelve months.</li>
+      <li>Shipped a Streamlit Databricks App that derives ARR twice by structurally different queries and leads with whether the two reconcile rather than with the number itself. Variance is zero across every month in the set.</li>
+      <li>Caught a retention metric that counted customers as churn against an opening balance they had never been part of, which returned a gross retention of minus seven hundred percent until it was rewritten as a cohort measure.</li>
+      <li>Found two faults that both deployments reported as successful: the app's service principal held no grant on the catalog, and the warehouse identifier was never bound into its environment.</li>
+    </ul>
+
+      <p class="projlink"><a href="https://github.com/ahmedayub314-commits/corporate-metrics-arr" target="_blank" rel="noopener">Source on GitHub</a></p>
+      <figure class="shot">
+        <img src="img/dbx-arr-trend.jpg" alt="The app's front page. It leads with whether the figures reconcile, not with the figures." loading="lazy" width="1200" height="639">
+        <figcaption>The app's front page. It leads with whether the figures reconcile, not with the figures.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/dbx-validation.jpg" alt="ARR derived twice by structurally different queries, with the variance published per month." loading="lazy" width="1200" height="639">
+        <figcaption>ARR derived twice by structurally different queries, with the variance published per month.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/dbx-movement.jpg" alt="Monthly movement. New and expansion above the line, contraction and churn below it." loading="lazy" width="1200" height="639">
+        <figcaption>Monthly movement. New and expansion above the line, contraction and churn below it.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/dbx-retention.jpg" alt="Cohort net and gross revenue retention. They diverge, and only the lower one sees the churn." loading="lazy" width="1200" height="639">
+        <figcaption>Cohort net and gross revenue retention. They diverge, and only the lower one sees the churn.</figcaption>
+      </figure>
+    </article>
+    <article class="entry">
+      <div class="entry-head">
         <h3>Castle QA Automation Framework</h3>
       </div>
       <p class="where">Designed and built the test infrastructure for a real-money gaming platform</p>
@@ -763,39 +796,6 @@ export function categorizePending(db: DB): CategorizeSummary {
 }</code></pre>
         </div>
       </div>
-    </article>
-    <article class="entry">
-      <div class="entry-head">
-        <h3>Corporate Metrics, ARR Reporting on Databricks</h3>
-      </div>
-      <p class="where">Built solo on Databricks Free Edition</p>
-      <p class="note">Built in a day against a data analyst job description that asked for Databricks, SQL, Python and AI-assisted development. I had not used Databricks before reading it. The screenshots below are the running app in my own workspace; the code is public. Three things went wrong while building it and all three are in the commit history, because that is the more useful half of the story.</p>
-      <p class="stack">Databricks (Unity Catalog, SQL warehouse, Apps), SQL, Python, Streamlit</p>
-    <ul class="points">
-      <li>Built a dimensional model in Unity Catalog: one additive ARR movement fact over customer, plan and date dimensions, carrying 24 months of seeded subscription history across 44 customers.</li>
-      <li>Computed the metrics a SaaS board pack runs on in SQL: ARR, the monthly movement waterfall of new, expansion, contraction and churn, and cohort net and gross revenue retention on a trailing twelve months.</li>
-      <li>Shipped a Streamlit Databricks App that derives ARR twice by structurally different queries and leads with whether the two reconcile rather than with the number itself. Variance is zero across every month in the set.</li>
-      <li>Caught a retention metric that counted customers as churn against an opening balance they had never been part of, which returned a gross retention of minus seven hundred percent until it was rewritten as a cohort measure.</li>
-      <li>Found two faults that both deployments reported as successful: the app's service principal held no grant on the catalog, and the warehouse identifier was never bound into its environment.</li>
-    </ul>
-
-      <p class="projlink"><a href="https://github.com/ahmedayub314-commits/corporate-metrics-arr" target="_blank" rel="noopener">Source on GitHub</a></p>
-      <figure class="shot">
-        <img src="img/dbx-arr-trend.jpg" alt="The app's front page. It leads with whether the figures reconcile, not with the figures." loading="lazy" width="1200" height="639">
-        <figcaption>The app's front page. It leads with whether the figures reconcile, not with the figures.</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="img/dbx-validation.jpg" alt="ARR derived twice by structurally different queries, with the variance published per month." loading="lazy" width="1200" height="639">
-        <figcaption>ARR derived twice by structurally different queries, with the variance published per month.</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="img/dbx-movement.jpg" alt="Monthly movement. New and expansion above the line, contraction and churn below it." loading="lazy" width="1200" height="639">
-        <figcaption>Monthly movement. New and expansion above the line, contraction and churn below it.</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="img/dbx-retention.jpg" alt="Cohort net and gross revenue retention. They diverge, and only the lower one sees the churn." loading="lazy" width="1200" height="639">
-        <figcaption>Cohort net and gross revenue retention. They diverge, and only the lower one sees the churn.</figcaption>
-      </figure>
     </article>
   </section>
   <section>
