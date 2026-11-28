@@ -392,6 +392,35 @@ pre.code code { font-family: var(--font-mono); font-size: 0.73rem; line-height: 
     <h2>Things I built</h2>
     <article class="entry">
       <div class="entry-head">
+        <h3>245D Retrieval, RAG with an Evaluation Harness</h3>
+      </div>
+      <p class="where">Built solo</p>
+      <p class="note">Built in a day after a job description asked for retrieval-augmented generation, embeddings and vector search, which were the one part of that stack I had not done. The corpus is Minnesota statute 245D, the same law Harbor is built against, so I could write the evaluation questions without guessing at what a provider actually asks. Everything below is produced by the harness in the repo and reproduces, because the embedding model runs locally and is deterministic. The findings that surprised me are in the README alongside the ones that did not.</p>
+      <p class="stack">TypeScript, all-MiniLM-L6-v2 via ONNX, sqlite-vec, BM25, Claude Agent SDK</p>
+    <ul class="points">
+      <li>Built retrieval over all 212 subdivisions of a state statute: 384-dimension sentence embeddings generated locally through ONNX, a sqlite-vec cosine index, a hand-written Okapi BM25, and reciprocal rank fusion across the two.</li>
+      <li>Measured the thing most retrieval systems assume. Chunking on the subdivision boundary the law already defines beat a fixed sliding window by 36 points of recall at 5, on identical embeddings and an identical index, scored against the citation rather than the chunk.</li>
+      <li>Proved a similarity score cannot decide when to refuse an answer: the best threshold on top-1 cosine rejected 1 of the 12 questions the corpus does not answer. Passing the retrieved passages to a model asked only whether they contain the answer rejected 12 of 12, and cited a correct subdivision on 39 of the 41 it accepted.</li>
+      <li>Found that hybrid retrieval lost to pure vector on this corpus, against expectation, because rank fusion promoted chunks that shared statutory vocabulary with the question without sharing its meaning.</li>
+      <li>Caught three faults that were each producing confident wrong numbers: a vector index defaulting to Euclidean distance so every similarity was meaningless, the source website's footer indexed as statute text, and a citation comparison matching on the section only, which reported 0 correct citations where there were 39.</li>
+    </ul>
+
+      <p class="projlink"><a href="https://github.com/ahmedayub314-commits/rag-245d" target="_blank" rel="noopener">Source on GitHub</a></p>
+      <figure class="shot">
+        <img src="img/rag-answered.jpg" alt="A question the statute does answer. The grounding check names the subdivision it relied on and the passages it used are marked, so the citation can be checked against the Revisor rather than trusted." loading="lazy" width="1200" height="639">
+        <figcaption>A question the statute does answer. The grounding check names the subdivision it relied on and the passages it used are marked, so the citation can be checked against the Revisor rather than trusted.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/rag-refused.jpg" alt="The case that matters. Electronic visit verification is a real thing 245D providers deal with and this chapter says nothing about it. The retriever still returns its five best passages, scoring the top one higher than many genuine questions score, and the system refuses anyway." loading="lazy" width="1200" height="639">
+        <figcaption>The case that matters. Electronic visit verification is a real thing 245D providers deal with and this chapter says nothing about it. The retriever still returns its five best passages, scoring the top one higher than many genuine questions score, and the system refuses anyway.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/rag-naive-compare.jpg" alt="The same question under the chunking and retrieval most tutorials start with. Chunk boundaries that ignore the structure of the law cost 36 points of recall at 5." loading="lazy" width="1200" height="639">
+        <figcaption>The same question under the chunking and retrieval most tutorials start with. Chunk boundaries that ignore the structure of the law cost 36 points of recall at 5.</figcaption>
+      </figure>
+    </article>
+    <article class="entry">
+      <div class="entry-head">
         <h3>Corporate Metrics, ARR Reporting on Databricks</h3>
       </div>
       <p class="where">Built solo on Databricks Free Edition</p>
@@ -979,7 +1008,7 @@ export function categorizePending(db: DB): CategorizeSummary {
     <p>A checker runs before anything is written. It refuses any figure that is not in the content file, and it refuses a duration or a count attached to the wrong employer, which is the mistake that is easy to make when you tailor the same history many times. If a claim will not trace, the build fails and nothing ships.</p>
     <p>I built that because I was applying to a lot of roles at once and wanted the documents to be auditable. It is also the shortest honest answer to what I think QA is.</p>
   </aside>
-  <footer>Generated from a single content file. 4 roles, 5 projects.</footer>
+  <footer>Generated from a single content file. 4 roles, 6 projects.</footer>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>
